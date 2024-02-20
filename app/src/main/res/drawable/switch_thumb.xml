@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+    <!-- Fondo blanco -->
+    <solid android:color="#FFFFFF" />
+    <!-- Especifica el tamaño del botón -->
+    <size
+        android:width="32dp"
+        android:height="32dp"
+        android:padding="20dp"/>
+</shape>

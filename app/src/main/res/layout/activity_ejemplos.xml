@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    tools:context=".Ejemplos">
+
+    <View
+        android:id="@+id/marronView"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:background="@color/check"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/blancoView"
+        />
+
+    <!-- Vista para la mitad blanca -->
+    <View
+        android:id="@+id/blancoView"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:background="@color/blanco_secundario"
+        app:layout_constraintStart_toEndOf="@id/marronView"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+
+    <Switch
+        android:id="@+id/switch1"
+        android:layout_width="64dp"
+        android:layout_height="49dp"
+        android:minWidth="48dp"
+        android:minHeight="48dp"
+        android:thumb="@drawable/thumb_custom"
+        android:track="@drawable/switch_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.806"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.115"
+        tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+    <ImageButton
+        android:id="@+id/imageButtoCheckn"
+        android:layout_width="72dp"
+        android:layout_height="73dp"
+        android:background="@drawable/circule_drawable"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.808"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.281"
+
+        app:srcCompat="@drawable/check"
+        tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
+
+    <ImageButton
+        android:id="@+id/imageButtonX"
+        android:layout_width="72dp"
+        android:layout_height="73dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.8"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.48"
+        android:background="@drawable/circule_drawable"
+        android:padding="10dp"
+        app:srcCompat="@drawable/xicono"
+        android:importantForAccessibility="no"
+        app:tint="@color/blanco_secundario" />/>
+
+    <ImageButton
+        android:id="@+id/imageButtonMas"
+        android:layout_width="72dp"
+        android:layout_height="73dp"
+        android:background="@drawable/circule_drawable"
+        android:padding="10dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.808"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.644"
+        app:srcCompat="@drawable/sumaricono"
+        tools:ignore="ContentDescription,SpeakableTextPresentCheck"
+        app:tint="@color/blanco_secundario" />
+
+    <ImageButton
+        android:id="@+id/imageButtonCasa"
+        android:layout_width="72dp"
+        android:layout_height="73dp"
+        android:background="@drawable/circule_drawable"
+        android:padding="10dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.191"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.42"
+        app:srcCompat="@drawable/casa"
+        tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
+
+    <ImageButton
+        android:id="@+id/imageButtonAjustes"
+        android:layout_width="72dp"
+        android:layout_height="73dp"
+        android:background="@drawable/circule_drawable"
+        android:padding="10dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.191"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.193"
+        app:srcCompat="@drawable/ajustes"
+        tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
