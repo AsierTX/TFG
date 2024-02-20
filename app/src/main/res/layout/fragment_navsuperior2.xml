@@ -7,7 +7,7 @@
     >
 
     <ImageButton
-        android:id="@+id/ajustes"
+        android:id="@+id/casa"
         android:layout_width="wrap_content"
         android:layout_height="117dp"
         android:layout_alignParentStart="true"
@@ -42,12 +42,12 @@
         android:layout_marginTop="38dp"
         android:layout_marginEnd="220dp"
         android:layout_marginBottom="30dp"
-        android:text="@string/notas"
+        android:text="@string/calenario"
         android:textColor="@color/white"
         android:textSize="36sp"
         android:textStyle="bold"
 
 
-    />
+        />
 
 </RelativeLayout>
