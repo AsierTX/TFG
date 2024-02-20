@@ -1,0 +1,45 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/rounded_background">
+
+    <ImageButton
+        android:id="@+id/btnOption1"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="2dp"
+        android:background="@drawable/circle_background"
+        android:padding="13dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/calendario"
+        tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
+
+
+    <ImageButton
+        android:id="@+id/btnOption2"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginEnd="57dp"
+        android:layout_toStartOf="@+id/btnOption3"
+        android:background="@drawable/circle_background"
+        android:scaleType="centerCrop"
+        android:src="@drawable/libreta"
+        tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
+
+    <ImageButton
+        android:id="@+id/btnOption3"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="30dp"
+        android:background="@drawable/circle_background"
+        android:scaleType="centerCrop"
+        android:src="@drawable/despertador"
+        tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
+</RelativeLayout>
