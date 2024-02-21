@@ -65,4 +65,15 @@
         app:srcCompat="@drawable/sumaricono"
         app:tint="@color/blanco_secundario"
         tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
+
+    <FrameLayout
+        android:id="@+id/fragmento"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="@+id/fragmentContainerView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
