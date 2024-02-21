@@ -10,4 +10,7 @@ import androidx.room.Update
 interface dao {
     @Insert
     fun insert(entity: entity)
+
+    @Query("SELECT DISTINCT SUBSTR(fecha, 1, 4) AS year FROM entity ORDER BY year DESC")
+    fun getDistinctYears(): List<String>
 }
