@@ -14,6 +14,6 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this, calendario2::class.java)
         startActivity(intent)
 
-        finish()*/
+        finish()
     }
 }
