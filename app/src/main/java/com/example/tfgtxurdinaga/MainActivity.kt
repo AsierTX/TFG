@@ -74,6 +74,6 @@ class MainActivity : AppCompatActivity() {
 /*        val intent = Intent(this, Ejemplos::class.java)
         startActivity(intent)
 
-        finish()*/
+        finish()
     }
 }

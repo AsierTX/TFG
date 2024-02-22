@@ -19,6 +19,12 @@
             android:name=".addnota"
             android:exported="false" />
         <activity
+            android:name=".calendario2"
+            android:exported="false" />
+        <activity
+            android:name=".calendario"
+            android:exported="false" />
+        <activity
             android:name=".Ejemplos"
             android:exported="false" />
         <activity
