@@ -19,16 +19,18 @@ class MainActivity : AppCompatActivity() {
     private val lista: ArrayList<entity> = ArrayList()
     private lateinit var adapter: ArrayAdapter<entity>
     private lateinit var listView: ListView
-    companion object{
+
+    companion object {
         lateinit var database: appdatabase
             private set
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         listView = findViewById(R.id.listview)
-        crearnota=findViewById(R.id.imageButtonMas2)
+        crearnota = findViewById(R.id.imageButtonMas2)
 
 
         GlobalScope.launch(Dispatchers.IO) {
@@ -40,9 +42,9 @@ class MainActivity : AppCompatActivity() {
                 .allowMainThreadQueries()
                 .build()
 
-                lista.addAll(database.dao.getAllDatos())
-                val Adapter = adapter(this@MainActivity, R.layout.nota_layout, lista)
-                listView.adapter = Adapter
+            lista.addAll(database.dao.getAllDatos())
+            val Adapter = adapter(this@MainActivity, R.layout.nota_layout, lista)
+            listView.adapter = Adapter
         }
 
         listView.setOnItemClickListener { parent, view, position, id ->
@@ -65,15 +67,18 @@ class MainActivity : AppCompatActivity() {
 
 
 
-        crearnota.setOnClickListener{
+        crearnota.setOnClickListener {
             val intent = Intent(this, addnota::class.java)
             startActivity(intent)
         }
 
 
-/*        val intent = Intent(this, Ejemplos::class.java)
+        /*        val intent = Intent(this, Ejemplos::class.java)
         startActivity(intent)
 
         finish()
+    }
+
+ */
     }
 }
