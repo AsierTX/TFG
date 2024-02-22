@@ -13,4 +13,7 @@ interface dao {
 
     @Query("SELECT DISTINCT SUBSTR(fecha, 1, 4) AS year FROM entity ORDER BY year DESC")
     fun getDistinctYears(): List<String>
+
+    @Query("SELECT * FROM entity WHERE strftime('%Y', fecha) = :year AND strftime('%m', fecha) = :month")
+    fun getNotesByYearAndMonth(year: Int, month: Int): List<entity>
 }

@@ -20,6 +20,7 @@
 
 
     <ListView
+        android:id="@+id/listview"
         android:layout_width="324dp"
         android:layout_height="340dp"
         android:layout_marginTop="170dp"
@@ -48,7 +49,7 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerView"
-        android:name="com.example.tfgtxurdinaga.navsuperior"
+        android:name="com.example.tfgtxurdinaga.navsuperior2"
         android:layout_width="match_parent"
         android:layout_height="120dp"
         app:layout_constraintBottom_toBottomOf="parent"

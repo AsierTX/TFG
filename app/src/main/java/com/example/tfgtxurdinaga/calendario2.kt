@@ -1,10 +1,9 @@
 package com.example.tfgtxurdinaga
 
+import android.annotation.SuppressLint
 import android.os.Bundle
-import android.widget.ArrayAdapter
-import android.widget.ImageButton
-import android.widget.Spinner
-import android.widget.TextView
+import android.view.View
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.room.Room
 import kotlinx.coroutines.Dispatchers
@@ -14,7 +13,14 @@ import kotlinx.coroutines.withContext
 
 class calendario2 : AppCompatActivity() {
     private lateinit var entityDao: dao // Asegúrate de inicializar entityDao
+    private lateinit var listView: ListView
+    private lateinit var spinner: Spinner
 
+    // Año y mes seleccionados
+    private var selectedYear: Int = 0
+    private var selectedMonth: Int = 0
+
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_calendario2)
@@ -32,7 +38,7 @@ class calendario2 : AppCompatActivity() {
                 entity(
                     titulo = "Nota 1",
                     descripcion = "Descripción de la Nota 1",
-                    fecha = "2022-02-21", // Cambia la fecha según sea necesario
+                    fecha = "2022-10-21", // Cambia la fecha según sea necesario
                     hora = "12:00 PM",
                     link = "https://ejemplo.com",
                     email = "correo@example.com",
@@ -57,7 +63,10 @@ class calendario2 : AppCompatActivity() {
         }
 
         // Lista de meses
-        val listaDeMeses = arrayOf("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre")
+        val listaDeMeses = arrayOf(
+            "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto",
+            "Septiembre", "Octubre", "Noviembre", "Diciembre"
+        )
 
         // Índice actual en la lista
         var indiceActual = 0
@@ -75,6 +84,7 @@ class calendario2 : AppCompatActivity() {
             if (indiceActual > 0) {
                 indiceActual--
                 textView.text = listaDeMeses[indiceActual]
+                updateNotesList()
             }
         }
 
@@ -83,11 +93,11 @@ class calendario2 : AppCompatActivity() {
             if (indiceActual < listaDeMeses.size - 1) {
                 indiceActual++
                 textView.text = listaDeMeses[indiceActual]
+                updateNotesList()
             }
         }
 
         // Inicializar el Spinner con los años en un hilo en segundo plano
-        val spinner: Spinner = findViewById(R.id.spinner)
         GlobalScope.launch(Dispatchers.Main) {
             // Obtener los años únicos de la base de datos en un hilo en segundo plano
             val uniqueYears = withContext(Dispatchers.IO) {
@@ -101,7 +111,40 @@ class calendario2 : AppCompatActivity() {
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 
             // Asignar el adaptador al Spinner
+            spinner = findViewById(R.id.spinner)
             spinner.adapter = adapter
+
+            // Manejar la selección de año en el Spinner
+            spinner.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(parentView: AdapterView<*>, selectedItemView: View?, position: Int, id: Long) {
+                    selectedYear = uniqueYears[position].toInt()
+                    updateNotesList()
+                }
+
+                override fun onNothingSelected(parentView: AdapterView<*>) {
+                    // No hacer nada si no se selecciona nada
+                }
+            })
+        }
+
+        // Inicializar el ListView
+        listView = findViewById(R.id.listview)
+    }
+
+    private fun updateNotesList() {
+        // Obtener el mes seleccionado actualmente
+        val selectedMonthIndex = spinner.selectedItemPosition
+        selectedMonth = selectedMonthIndex + 1 // Los índices de los meses suelen ser 0-based
+
+        // Cargar las notas correspondientes al año y mes seleccionados desde la base de datos
+        GlobalScope.launch(Dispatchers.IO) {
+            val filteredNotes = entityDao.getNotesByYearAndMonth(selectedYear, selectedMonth)
+
+            // Mostrar las notas en el ListView
+            runOnUiThread {
+                val adapter = ArrayAdapter(this@calendario2, android.R.layout.simple_list_item_1, filteredNotes)
+                listView.adapter = adapter
+            }
         }
     }
 }
