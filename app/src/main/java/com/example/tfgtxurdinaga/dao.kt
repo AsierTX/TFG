@@ -17,6 +17,8 @@ interface dao {
     @Query("SELECT * FROM entity WHERE titulo = :titulo")
     fun getNotaPorTitulo(titulo: String): entity?
 
+    @Query("SELECT DISTINCT SUBSTR(fecha, 1, 4) AS year FROM entity ORDER BY year DESC")
+    fun getDistinctYears(): List<String>
 
     @Query("UPDATE entity SET descripcion = :nuevaDescripcion, hora = :nuevaHora, fecha = :nuevaFecha, link = :nuevoLink, email = :nuevoEmail, telefono = :nuevoTelefono, hecho = :nuevoHecho WHERE titulo = :titulo")
     fun updateNotaDetallada(
