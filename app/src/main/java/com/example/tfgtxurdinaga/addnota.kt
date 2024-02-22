@@ -26,9 +26,8 @@ class addnota : AppCompatActivity() {
     private lateinit var telefono: EditText
     private lateinit var cerrarnota: ImageButton
     private lateinit var crearnota: ImageButton
-    val lista : ArrayList<entity> = ArrayList()
 
-    companion object{
+    companion object {
         lateinit var database: appdatabase
             private set
     }
@@ -65,16 +64,18 @@ class addnota : AppCompatActivity() {
         }
 
         crearnota.setOnClickListener {
-            var titulostring = titulo.text.toString()
-            var descripcionstring = descripcion.text.toString()
-            var fechastring = fecha.text.toString()
-            var horastring = hora.text.toString()
-            var linkstring = link.text.toString()
-            var emailstring = email.text.toString()
-            var telefonostring = telefono.text.toString()
+            val titulostring = titulo.text.toString()
+            val descripcionstring = descripcion.text.toString()
+            val fechastring = fecha.text.toString()
+            val horastring = hora.text.toString()
+            val linkstring = link.text.toString()
+            val emailstring = email.text.toString()
+            val telefonostring = telefono.text.toString()
 
-            if (titulostring.isNotEmpty()){
+            if (titulostring.isNotEmpty()) {
+                // Comprobar si el título ya existe
                 GlobalScope.launch(Dispatchers.IO) {
+
                     database = Room.databaseBuilder(
                         application,
                         appdatabase::class.java,
@@ -83,25 +84,42 @@ class addnota : AppCompatActivity() {
                         .allowMainThreadQueries()
                         .build()
 
-                    val notanueva = entity(id = 0, titulo = titulostring, descripcion = descripcionstring, fecha = fechastring, hora = horastring, link = linkstring, email = emailstring, telefono = telefonostring, hecho = true)
+                    val notaExistente = database.dao.getNotaPorTitulo(titulostring)
 
-                    database.dao.insert(notanueva)
-                    lista.add(notanueva)
+                    if (notaExistente == null) {
+                        // El título no existe, puedes insertar la nota
+                        val notanueva = entity(
+                            id = 0,
+                            titulo = titulostring,
+                            descripcion = descripcionstring,
+                            fecha = fechastring,
+                            hora = horastring,
+                            link = linkstring,
+                            email = emailstring,
+                            telefono = telefonostring,
+                            hecho = true
+                        )
 
-                    titulo.text.clear()
-                    descripcion.text.clear()
-                    fecha.text.clear()
-                    hora.text.clear()
-                    link.text.clear()
-                    email.text.clear()
-                    telefono.text.clear()
+                        database.dao.insert(notanueva)
 
+                        titulo.text.clear()
+                        descripcion.text.clear()
+                        fecha.text.clear()
+                        hora.text.clear()
+                        link.text.clear()
+                        email.text.clear()
+                        telefono.text.clear()
+
+                        val intent = Intent(this@addnota, MainActivity::class.java)
+                        startActivity(intent)
+                    } else {
+                        // El título ya existe, mostrar diálogo de error
+                        runOnUiThread {
+                            dialog2()
+                        }
+                    }
                 }
-
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
-
-                }else{
+            } else {
                 dialog()
             }
         }
@@ -117,6 +135,18 @@ class addnota : AppCompatActivity() {
         val dialog: AlertDialog = builder.create()
         dialog.show()
     }
+
+    private fun dialog2() {
+        val builder = AlertDialog.Builder(this)
+
+        builder.setTitle("ERROR")
+            .setMessage("Ese titulo ya existe! Prueba con otro.")
+            .setPositiveButton("Vale") { dialog, which ->
+            }
+        val dialog: AlertDialog = builder.create()
+        dialog.show()
+    }
+
     private fun mostrarCalendario() {
         val calendario = Calendar.getInstance()
         val año = calendario.get(Calendar.YEAR)
@@ -137,6 +167,7 @@ class addnota : AppCompatActivity() {
 
         datePickerDialog.show()
     }
+
     private fun mostrarTimePickerDialog() {
         val calendario = Calendar.getInstance()
         val horaActual = calendario.get(Calendar.HOUR_OF_DAY)
@@ -146,7 +177,8 @@ class addnota : AppCompatActivity() {
             this,
             { _, horaSeleccionada, minutoSeleccionado ->
                 // Formatear la hora seleccionada a "HH:mm"
-                val horaFormateada = String.format("%02d:%02d", horaSeleccionada, minutoSeleccionado)
+                val horaFormateada =
+                    String.format("%02d:%02d", horaSeleccionada, minutoSeleccionado)
                 // Establecer el texto en el EditText
                 hora.setText(horaFormateada)
             },
