@@ -1,10 +1,12 @@
 package com.example.tfgtxurdinaga
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -34,7 +36,20 @@ class fragment_menu : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_menu, container, false)
+        val view = inflater.inflate(R.layout.fragment_menu, container, false)
+
+        val btncalendario = view.findViewById<ImageButton>(R.id.btnOption1)
+        val btnnotas = view.findViewById<ImageButton>(R.id.btnOption2)
+
+        btnnotas.setOnClickListener {
+            val intent = Intent(requireContext(), MainActivity::class.java)
+            startActivity(intent)
+        }
+        btncalendario.setOnClickListener {
+            val intent = Intent(requireContext(), calendario2::class.java)
+            startActivity(intent)
+        }
+        return view
     }
 
     companion object {
