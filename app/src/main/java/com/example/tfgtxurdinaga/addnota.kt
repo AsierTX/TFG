@@ -157,7 +157,8 @@ class addnota : AppCompatActivity() {
             this,
             DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
                 // Manejar la fecha seleccionada
-                val fechaSeleccionada = "$dayOfMonth/${month + 1}/$year"
+                val mesFormateado = String.format("%02d", month + 1) // +1 porque los meses en Calendar van de 0 a 11
+                val fechaSeleccionada = "$dayOfMonth/$mesFormateado/$year"
                 fecha.setText(fechaSeleccionada)
             },
             año,
