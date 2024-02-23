@@ -252,8 +252,12 @@ class editarnota : AppCompatActivity() {
         val datePickerDialog = DatePickerDialog(
             this,
             DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
-                // Manejar la fecha seleccionada
-                val fechaSeleccionada = "$dayOfMonth/${month + 1}/$year"
+                // Formatear el día y el mes seleccionados con dos dígitos
+                val dayOfMonthFormatted = String.format("%02d", dayOfMonth)
+                val monthFormatted = String.format("%02d", month + 1)
+
+                // Construir la fecha con el formato deseado
+                val fechaSeleccionada = "$dayOfMonthFormatted/$monthFormatted/$year"
                 fecha.setText(fechaSeleccionada)
             },
             año,

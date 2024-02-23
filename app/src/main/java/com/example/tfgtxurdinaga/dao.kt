@@ -23,11 +23,16 @@ interface dao {
     @Query("DELETE FROM entity WHERE titulo = :titulo")
     fun delete(titulo: String)
 
+    //@Query("SELECT * FROM entity WHERE strftime('%Y', fecha) = :year AND strftime('%m', fecha) = :month")
+    //fun getNotesByYearAndMonth(year: Int, month: Int): List<entity>
+    @Query("SELECT * FROM entity WHERE substr(fecha, 4, 2) = :month AND substr(fecha, 7, 4) = :year")
+    fun getNotesByYearAndMonth(year: String, month: String): List<entity>
 
-    @Query("SELECT * FROM entity WHERE strftime('%Y', fecha) = :year AND strftime('%m', fecha) = :month")
-    fun getNotesByYearAndMonth(year: Int, month: Int): List<entity>
-    @Query("SELECT DISTINCT SUBSTR(fecha, 1, 4) AS year FROM entity ORDER BY year DESC")
-    fun getDistinctYears(): List<String>
+
+    @Query("SELECT DISTINCT SUBSTR(fecha, -4) AS año FROM entity WHERE fecha IS NOT NULL AND fecha != ''")
+    fun getYears(): List<Int>
+
+
 
     @Query("UPDATE entity SET descripcion = :nuevaDescripcion, hora = :nuevaHora, fecha = :nuevaFecha, link = :nuevoLink, email = :nuevoEmail, telefono = :nuevoTelefono, hecho = :nuevoHecho WHERE titulo = :titulo")
     fun updateNotaDetallada(
