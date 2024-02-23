@@ -1,8 +1,8 @@
 package com.example.tfgtxurdinaga
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.os.Bundle
-import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.room.Room
@@ -12,64 +12,55 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class calendario2 : AppCompatActivity() {
-    private lateinit var entityDao: dao // Asegúrate de inicializar entityDao
+    private lateinit var entityDao: dao
     private lateinit var listView: ListView
     private lateinit var spinner: Spinner
+    private var indiceActual = 0
 
-    // Año y mes seleccionados
-    private var selectedYear: Int = 0
-    private var selectedMonth: Int = 0
+    companion object {
+        lateinit var database: appdatabase
+            private set
+    }
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_calendario2)
 
-        // Inicializar entityDao utilizando Room
-        entityDao = Room.databaseBuilder(
-            applicationContext,
-            appdatabase::class.java,
-            "appdatabase"
-        ).build().dao
 
+        // Inicializar la base de datos en un hilo de fondo
         GlobalScope.launch(Dispatchers.IO) {
-            // Insertar nota 1
-            entityDao.insert(
-                entity(
-                    titulo = "Nota 1",
-                    descripcion = "Descripción de la Nota 1",
-                    fecha = "2022-10-21", // Cambia la fecha según sea necesario
-                    hora = "12:00 PM",
-                    link = "https://ejemplo.com",
-                    email = "correo@example.com",
-                    telefono = "123456789",
-                    hecho = false
-                )
-            )
+            database = Room.databaseBuilder(
+                application,
+                appdatabase::class.java,
+                appdatabase.DATABASE_NAME
+            ).build()
 
-            // Insertar nota 2
-            entityDao.insert(
-                entity(
-                    titulo = "Nota 2",
-                    descripcion = "Descripción de la Nota 2",
-                    fecha = "2023-02-22", // Cambia la fecha según sea necesario
-                    hora = "2:30 PM",
-                    link = "https://ejemplo.com",
-                    email = "correo@example.com",
-                    telefono = "987654321",
-                    hecho = true
-                )
-            )
+            listView = findViewById(R.id.listview)
+
+            // Obtener los años desde la base de datos
+            val years = database.dao.getYears()
+
+            // Crear un adaptador para el Spinner con los años obtenidos
+            val adapter =
+                ArrayAdapter(this@calendario2, android.R.layout.simple_spinner_item, years)
+
+            // Especificar el diseño del dropdown
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+
+            // Inicializar el Spinner
+            spinner = findViewById(R.id.spinner)
+            spinner.adapter = adapter
+
+            updateNotesList()
         }
-
         // Lista de meses
         val listaDeMeses = arrayOf(
             "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto",
             "Septiembre", "Octubre", "Noviembre", "Diciembre"
         )
 
-        // Índice actual en la lista
-        var indiceActual = 0
+
 
         // Inicializar el TextView con el mes inicial
         val textView: TextView = findViewById(R.id.textView2)
@@ -84,8 +75,7 @@ class calendario2 : AppCompatActivity() {
             if (indiceActual > 0) {
                 indiceActual--
                 textView.text = listaDeMeses[indiceActual]
-                updateNotesList()
-            }
+                updateNotesList()            }
         }
 
         imageButtonSiguiente.setOnClickListener {
@@ -97,52 +87,23 @@ class calendario2 : AppCompatActivity() {
             }
         }
 
-        // Inicializar el Spinner con los años en un hilo en segundo plano
-        GlobalScope.launch(Dispatchers.Main) {
-            // Obtener los años únicos de la base de datos en un hilo en segundo plano
-            val uniqueYears = withContext(Dispatchers.IO) {
-                entityDao.getDistinctYears()
-            }
-
-            // Crear un adaptador para el Spinner
-            val adapter = ArrayAdapter(this@calendario2, android.R.layout.simple_spinner_item, uniqueYears)
-
-            // Especificar el diseño del dropdown
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-
-            // Asignar el adaptador al Spinner
-            spinner = findViewById(R.id.spinner)
-            spinner.adapter = adapter
-
-            // Manejar la selección de año en el Spinner
-            spinner.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(parentView: AdapterView<*>, selectedItemView: View?, position: Int, id: Long) {
-                    selectedYear = uniqueYears[position].toInt()
-                    updateNotesList()
-                }
-
-                override fun onNothingSelected(parentView: AdapterView<*>) {
-                    // No hacer nada si no se selecciona nada
-                }
-            })
-        }
-
-        // Inicializar el ListView
-        listView = findViewById(R.id.listview)
+        // Aquí puedes agregar la inicialización del ListView si es necesario
     }
-
     private fun updateNotesList() {
-        // Obtener el mes seleccionado actualmente
-        val selectedMonthIndex = spinner.selectedItemPosition
-        selectedMonth = selectedMonthIndex + 1 // Los índices de los meses suelen ser 0-based
+        // Obtener el año seleccionado desde el Spinner
+        val selectedYear = spinner.selectedItem as Int
+        val selectedYearstring = selectedYear.toString()
+        // Obtener el mes mostrado en el TextView
+        val selectedMonth = (indiceActual + 1) as Int
+        val selectedMonthstring = selectedMonth.toString()
 
-        // Cargar las notas correspondientes al año y mes seleccionados desde la base de datos
         GlobalScope.launch(Dispatchers.IO) {
-            val filteredNotes = entityDao.getNotesByYearAndMonth(selectedYear, selectedMonth)
+            val filteredNotes = database.dao.getNotesByYearAndMonth(selectedYearstring, selectedMonthstring)
 
             // Mostrar las notas en el ListView
-            runOnUiThread {
-                val adapter = ArrayAdapter(this@calendario2, android.R.layout.simple_list_item_1, filteredNotes)
+            withContext(Dispatchers.Main) {
+
+                val adapter = adapter(this@calendario2, R.layout.nota_layout, filteredNotes)
                 listView.adapter = adapter
             }
         }
