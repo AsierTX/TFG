@@ -19,6 +19,11 @@ interface dao {
 
     @Query("SELECT hecho FROM entity WHERE titulo = :titulo")
     fun gethecho(titulo: String): Boolean?
+
+    @Query("DELETE FROM entity WHERE titulo = :titulo")
+    fun delete(titulo: String)
+
+
     @Query("SELECT * FROM entity WHERE strftime('%Y', fecha) = :year AND strftime('%m', fecha) = :month")
     fun getNotesByYearAndMonth(year: Int, month: Int): List<entity>
     @Query("SELECT DISTINCT SUBSTR(fecha, 1, 4) AS year FROM entity ORDER BY year DESC")

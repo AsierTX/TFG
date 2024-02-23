@@ -38,6 +38,8 @@ class editarnota : AppCompatActivity() {
     private lateinit var telefono: EditText
     private lateinit var cerrarnota: ImageButton
     private lateinit var editar: ImageButton
+    private lateinit var eliminar: ImageButton
+
     private lateinit var switch: Switch
 
     private lateinit var btnlink: ImageButton
@@ -78,6 +80,7 @@ class editarnota : AppCompatActivity() {
         btnlink = findViewById(R.id.imageButton3)
         btnemail = findViewById(R.id.imageButton4)
         btntelefono = findViewById(R.id.imageButton5)
+        eliminar = findViewById(R.id.imageButton6)
 
         fecha.setOnFocusChangeListener { _, hasFocus ->
             if (hasFocus) {
@@ -164,6 +167,9 @@ class editarnota : AppCompatActivity() {
                 startActivity(intent)
                 }
 
+        eliminar.setOnClickListener {
+            mostrarDialogOpciones()
+        }
         btntelefono.setOnClickListener {
             val phoneNumber = telefono.text.toString()
             if (phoneNumber.isNotEmpty()) {
@@ -285,6 +291,32 @@ class editarnota : AppCompatActivity() {
             .setPositiveButton("Vale") { dialog, which ->
             }
         val dialog: AlertDialog = builder.create()
+        dialog.show()
+    }
+    private fun mostrarDialogOpciones() {
+        val opciones = arrayOf("Sí", "No", "Cancelar")
+
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Seguro que lo quieres borrar?")
+            .setItems(opciones) { dialog, which ->
+                when (which) {
+                    0 -> {
+                        database.dao.delete(titulo.text.toString())
+                        val intent = Intent(this, MainActivity::class.java)
+                        startActivity(intent)
+                        dialog.dismiss()
+                    }
+                    1 -> {
+                        dialog.dismiss()
+                    }
+                    2 -> {
+                        dialog.dismiss()
+                    }
+                }
+            }
+
+        // Crea y muestra el diálogo
+        val dialog = builder.create()
         dialog.show()
     }
 }
