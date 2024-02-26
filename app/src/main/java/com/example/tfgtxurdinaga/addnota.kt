@@ -72,7 +72,11 @@ class addnota : AppCompatActivity() {
             val emailstring = email.text.toString()
             val telefonostring = telefono.text.toString()
 
+
             if (titulostring.isNotEmpty()) {
+                if (!isValidDateFormat(fechastring)) {
+                    dialogerror()
+                } else {
                 // Comprobar si el título ya existe
                 GlobalScope.launch(Dispatchers.IO) {
 
@@ -119,6 +123,7 @@ class addnota : AppCompatActivity() {
                         }
                     }
                 }
+            }
             } else {
                 dialog()
             }
@@ -134,6 +139,10 @@ class addnota : AppCompatActivity() {
             }
         val dialog: AlertDialog = builder.create()
         dialog.show()
+    }
+    private fun isValidDateFormat(date: String): Boolean {
+        val regex = Regex("""^\d{2}/\d{2}/\d{4}$""")
+        return date.matches(regex)
     }
 
     private fun dialog2() {
@@ -192,5 +201,15 @@ class addnota : AppCompatActivity() {
         )
 
         timePickerDialog.show()
+    }
+    private fun dialogerror() {
+        val builder = AlertDialog.Builder(this)
+
+        builder.setTitle("ERROR")
+            .setMessage("Formato de fecha no válido. Utiliza xx/xx/xxxx")
+            .setPositiveButton("Vale") { dialog, which ->
+            }
+        val dialog: AlertDialog = builder.create()
+        dialog.show()
     }
 }

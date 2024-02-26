@@ -138,8 +138,7 @@ class editarnota : AppCompatActivity() {
                 val hechoActualizado: Boolean = if (switchValue) true else false
 
                 if (!isValidDateFormat(nuevaFecha)) {
-                    // Mostrar un mensaje de error y salir del método
-                    Toast.makeText(this, "Formato de fecha no válido. Utiliza xx/xx/xxxx", Toast.LENGTH_SHORT).show()
+                    dialogerror()
                 } else {
                     GlobalScope.launch(Dispatchers.IO) {
 
@@ -302,6 +301,16 @@ class editarnota : AppCompatActivity() {
 
         builder.setTitle("ERROR")
             .setMessage("Campo vacio, escribe algo.")
+            .setPositiveButton("Vale") { dialog, which ->
+            }
+        val dialog: AlertDialog = builder.create()
+        dialog.show()
+    }
+    private fun dialogerror() {
+        val builder = AlertDialog.Builder(this)
+
+        builder.setTitle("ERROR")
+            .setMessage("Formato de fecha no válido. Utiliza xx/xx/xxxx")
             .setPositiveButton("Vale") { dialog, which ->
             }
         val dialog: AlertDialog = builder.create()
