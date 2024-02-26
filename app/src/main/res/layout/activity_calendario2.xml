@@ -113,5 +113,20 @@
         app:tint="@color/blanco_secundario"
         tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
 
+    <ImageButton
+        android:id="@+id/btnCambiar"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:background="@drawable/circle_background"
+        android:scaleType="centerCrop"
+        android:src="@drawable/calendario"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.836"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.182"
+        tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

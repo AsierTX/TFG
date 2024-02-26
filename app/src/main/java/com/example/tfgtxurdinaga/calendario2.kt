@@ -2,6 +2,7 @@ package com.example.tfgtxurdinaga
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
+import android.content.Intent
 import android.os.Bundle
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
@@ -15,7 +16,11 @@ class calendario2 : AppCompatActivity() {
     private lateinit var entityDao: dao
     private lateinit var listView: ListView
     private lateinit var spinner: Spinner
+    private lateinit var btncambiar: ImageButton
+    private val lista: ArrayList<entity> = ArrayList()
     private var indiceActual = 0
+    private lateinit var crearnota: ImageButton
+
 
     companion object {
         lateinit var database: appdatabase
@@ -27,7 +32,12 @@ class calendario2 : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_calendario2)
 
+        crearnota = findViewById(R.id.imageButtonMas)
 
+        crearnota.setOnClickListener {
+            val intent = Intent(this, addnota::class.java)
+            startActivity(intent)
+        }
         // Inicializar la base de datos en un hilo de fondo
         GlobalScope.launch(Dispatchers.IO) {
             database = Room.databaseBuilder(
@@ -37,6 +47,7 @@ class calendario2 : AppCompatActivity() {
             ).build()
 
             listView = findViewById(R.id.listview)
+
 
             // Obtener los años desde la base de datos
             val years = database.dao.getYears()
@@ -54,6 +65,14 @@ class calendario2 : AppCompatActivity() {
 
             updateNotesList()
         }
+
+        btncambiar = findViewById(R.id.btnCambiar)
+
+        btncambiar.setOnClickListener{
+            val intent = Intent(this, calendario::class.java)
+            startActivity(intent)
+        }
+
         // Lista de meses
         val listaDeMeses = arrayOf(
             "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto",
@@ -90,22 +109,52 @@ class calendario2 : AppCompatActivity() {
         // Aquí puedes agregar la inicialización del ListView si es necesario
     }
     private fun updateNotesList() {
+
         // Obtener el año seleccionado desde el Spinner
-        val selectedYear = spinner.selectedItem as Int
-        val selectedYearstring = selectedYear.toString()
-        // Obtener el mes mostrado en el TextView
-        val selectedMonth = (indiceActual + 1) as Int
-        val selectedMonthstring = selectedMonth.toString()
+        val selectedYearItem = spinner.selectedItem
+        if (selectedYearItem is Int) {  // Cambio aquí: Verificar que el selectedItem sea del tipo esperado
+            val selectedYear = selectedYearItem.toString()
 
-        GlobalScope.launch(Dispatchers.IO) {
-            val filteredNotes = database.dao.getNotesByYearAndMonth(selectedYearstring, selectedMonthstring)
+            // Obtener el mes mostrado en el TextView
+            val selectedMonth = (indiceActual + 1).toString().padStart(2, '0')
 
-            // Mostrar las notas en el ListView
-            withContext(Dispatchers.Main) {
+            listView.setOnItemClickListener { parent, view, position, id ->
+                GlobalScope.launch(Dispatchers.IO) {
 
-                val adapter = adapter(this@calendario2, R.layout.nota_layout, filteredNotes)
-                listView.adapter = adapter
+                    val lista = database.dao.getNotesByYearAndMonth(selectedYear, selectedMonth)
+
+                    val itemSeleccionado: entity = lista[position]
+
+                    val intent = Intent(this@calendario2, editarnota::class.java)
+
+                    intent.putExtra("titulo", itemSeleccionado.titulo)
+                    intent.putExtra("descripcion", itemSeleccionado.descripcion)
+                    intent.putExtra("hora", itemSeleccionado.hora)
+                    intent.putExtra("fecha", itemSeleccionado.fecha)
+                    intent.putExtra("link", itemSeleccionado.link)
+                    intent.putExtra("email", itemSeleccionado.email)
+                    intent.putExtra("telefono", itemSeleccionado.telefono)
+                    intent.putExtra("hecho", itemSeleccionado.hecho)
+
+                    startActivity(intent)
+                }
             }
+
+            GlobalScope.launch(Dispatchers.IO) {
+                val filteredNotes = database.dao.getNotesByYearAndMonth(selectedYear, selectedMonth)
+
+                // Mostrar las notas en el ListView
+                withContext(Dispatchers.Main) {
+                    val adapter = adapter(this@calendario2, R.layout.nota_layout, filteredNotes)
+                    listView.adapter = adapter
+                }
+            }
+        } else {
+            // Manejar el caso en que el selectedItem no es del tipo esperado
+            // Puedes mostrar un mensaje de error, por ejemplo:
         }
     }
+
+
+
 }
