@@ -137,6 +137,7 @@ class editarnota : AppCompatActivity() {
                 val switchValue = switch.isChecked
                 val hechoActualizado: Boolean = if (switchValue) true else false
 
+                if (nuevaFecha!=""){
                 if (!isValidDateFormat(nuevaFecha)) {
                     dialogerror()
                 } else {
@@ -167,8 +168,38 @@ class editarnota : AppCompatActivity() {
                             hechoActualizado
                         )
                     }
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                }}else{
+                    GlobalScope.launch(Dispatchers.IO) {
+
+
+                        val notaActualizada = entity(
+                            titulo = nuevoTitulo,
+                            descripcion = nuevaDescripcion,
+                            hora = nuevaHora,
+                            fecha = nuevaFecha,
+                            link = nuevoLink,
+                            email = nuevoEmail,
+                            telefono = nuevoTelefono,
+                            hecho = hechoActualizado
+                        )
+
+                        // Llama al método de actualización en tu DAO
+
+                        database.dao.updateNotaDetallada(
+                            nuevoTitulo,
+                            nuevaDescripcion,
+                            nuevaHora,
+                            nuevaFecha,
+                            nuevoLink,
+                            nuevoEmail,
+                            nuevoTelefono,
+                            hechoActualizado
+                        )
+                    }
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
                 }
         }
 

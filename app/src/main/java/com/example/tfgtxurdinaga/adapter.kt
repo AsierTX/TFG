@@ -24,8 +24,8 @@ class adapter(context: Context, resource: Int, objects: List<entity>) :
         notas?.let {
             textViewTitulo.text = it.titulo
             textViewDescripcion.text = it.descripcion
-            textViewFecha.text = "Fecha: ${it.fecha}"
-            textViewHora.text = "Hora: ${it.hora}"
+            textViewFecha.text = it.fecha
+            textViewHora.text = it.hora
         }
 
         return itemView

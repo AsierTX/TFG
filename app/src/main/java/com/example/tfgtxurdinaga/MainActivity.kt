@@ -3,6 +3,7 @@ package com.example.tfgtxurdinaga
 import android.content.Intent
 import android.os.Bundle
 import android.widget.ArrayAdapter
+import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.ListView
 import android.widget.Toast
@@ -11,6 +12,7 @@ import androidx.room.Room
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 
 class MainActivity : AppCompatActivity() {
@@ -19,6 +21,8 @@ class MainActivity : AppCompatActivity() {
     private val lista: ArrayList<entity> = ArrayList()
     private lateinit var adapter: ArrayAdapter<entity>
     private lateinit var listView: ListView
+    private lateinit var editTextBusqueda: EditText
+    private lateinit var buttonBuscar: ImageButton
 
     companion object {
         lateinit var database: appdatabase
@@ -32,6 +36,12 @@ class MainActivity : AppCompatActivity() {
         listView = findViewById(R.id.listview)
         crearnota = findViewById(R.id.imageButtonMas2)
 
+        editTextBusqueda = findViewById(R.id.editTextText)
+        buttonBuscar = findViewById(R.id.imageButton10)
+
+        buttonBuscar.setOnClickListener {
+            buscarEntidadesPorTitulo()
+        }
 
         GlobalScope.launch(Dispatchers.IO) {
             database = Room.databaseBuilder(
@@ -80,5 +90,22 @@ class MainActivity : AppCompatActivity() {
     }
 
  */
+    }
+    private fun buscarEntidadesPorTitulo() {
+        val textoBusqueda = editTextBusqueda.text.toString()
+
+        // Aquí debes realizar la lógica de búsqueda en tu base de datos
+        // y obtener las entidades cuyo título coincide con el texto de búsqueda.
+        // Supongamos que tienes un método en tu DAO para realizar la búsqueda.
+
+        GlobalScope.launch(Dispatchers.IO) {
+            val entidadesEncontradas = database.dao.buscarPorTitulo(textoBusqueda)
+
+            // Actualiza la interfaz de usuario en el hilo principal
+            withContext(Dispatchers.Main) {
+                val Adapter = adapter(this@MainActivity, R.layout.nota_layout, entidadesEncontradas)
+                listView.adapter = Adapter                }
+
+        }
     }
 }

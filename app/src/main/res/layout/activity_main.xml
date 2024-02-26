@@ -34,13 +34,15 @@
 
     <ListView
         android:id="@+id/listview"
-        android:layout_width="409dp"
-        android:layout_height="428dp"
+        android:layout_width="408dp"
+        android:layout_height="383dp"
         app:layout_constraintBottom_toBottomOf="@+id/fragmentContainerView2"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/card_layout"/>
+        app:layout_constraintVertical_bias="0.614"
+        tools:listitem="@layout/card_layout" />
 
     <ImageButton
         android:id="@+id/imageButtonMas2"
@@ -58,5 +60,41 @@
         app:srcCompat="@drawable/sumaricono"
         app:tint="@color/blanco_secundario"
         tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="381dp"
+        android:layout_height="61dp"
+        app:layout_constraintBottom_toTopOf="@+id/listview"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragmentContainerView">
+
+        <EditText
+            android:id="@+id/editTextText"
+            android:layout_width="232dp"
+            android:layout_height="47dp"
+            android:ems="10"
+            android:inputType="text"
+            android:text=""
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.107"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+        <ImageButton
+            android:id="@+id/imageButton10"
+            android:layout_width="62dp"
+            android:layout_height="60dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.915"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0"
+            app:srcCompat="@android:drawable/ic_menu_search"
+            tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

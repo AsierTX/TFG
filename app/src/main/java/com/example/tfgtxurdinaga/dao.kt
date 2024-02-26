@@ -17,6 +17,8 @@ interface dao {
     @Query("SELECT * FROM entity WHERE titulo = :titulo")
     fun getNotaPorTitulo(titulo: String): entity?
 
+    @Query("SELECT * FROM entity WHERE titulo LIKE '%' || :titulo || '%'")
+    fun buscarPorTitulo(titulo: String): List<entity>
     @Query("SELECT hecho FROM entity WHERE titulo = :titulo")
     fun gethecho(titulo: String): Boolean?
 

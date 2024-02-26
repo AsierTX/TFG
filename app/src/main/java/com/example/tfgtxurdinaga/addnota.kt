@@ -74,56 +74,103 @@ class addnota : AppCompatActivity() {
 
 
             if (titulostring.isNotEmpty()) {
+                if (fechastring!=""){
                 if (!isValidDateFormat(fechastring)) {
                     dialogerror()
                 } else {
-                // Comprobar si el título ya existe
-                GlobalScope.launch(Dispatchers.IO) {
+                    // Comprobar si el título ya existe
+                    GlobalScope.launch(Dispatchers.IO) {
 
-                    database = Room.databaseBuilder(
-                        application,
-                        appdatabase::class.java,
-                        appdatabase.DATABASE_NAME
-                    )
-                        .allowMainThreadQueries()
-                        .build()
-
-                    val notaExistente = database.dao.getNotaPorTitulo(titulostring)
-
-                    if (notaExistente == null) {
-                        // El título no existe, puedes insertar la nota
-                        val notanueva = entity(
-                            id = 0,
-                            titulo = titulostring,
-                            descripcion = descripcionstring,
-                            fecha = fechastring,
-                            hora = horastring,
-                            link = linkstring,
-                            email = emailstring,
-                            telefono = telefonostring,
-                            hecho = true
+                        database = Room.databaseBuilder(
+                            application,
+                            appdatabase::class.java,
+                            appdatabase.DATABASE_NAME
                         )
+                            .allowMainThreadQueries()
+                            .build()
 
-                        database.dao.insert(notanueva)
+                        val notaExistente = database.dao.getNotaPorTitulo(titulostring)
 
-                        titulo.text.clear()
-                        descripcion.text.clear()
-                        fecha.text.clear()
-                        hora.text.clear()
-                        link.text.clear()
-                        email.text.clear()
-                        telefono.text.clear()
+                        if (notaExistente == null) {
+                            // El título no existe, puedes insertar la nota
+                            val notanueva = entity(
+                                id = 0,
+                                titulo = titulostring,
+                                descripcion = descripcionstring,
+                                fecha = fechastring,
+                                hora = horastring,
+                                link = linkstring,
+                                email = emailstring,
+                                telefono = telefonostring,
+                                hecho = true
+                            )
 
-                        val intent = Intent(this@addnota, MainActivity::class.java)
-                        startActivity(intent)
-                    } else {
-                        // El título ya existe, mostrar diálogo de error
-                        runOnUiThread {
-                            dialog2()
+                            database.dao.insert(notanueva)
+
+                            titulo.text.clear()
+                            descripcion.text.clear()
+                            fecha.text.clear()
+                            hora.text.clear()
+                            link.text.clear()
+                            email.text.clear()
+                            telefono.text.clear()
+
+                            val intent = Intent(this@addnota, MainActivity::class.java)
+                            startActivity(intent)
+                        } else {
+                            // El título ya existe, mostrar diálogo de error
+                            runOnUiThread {
+                                dialog2()
+                            }
+                        }
+                    }
+                }}else{
+                    GlobalScope.launch(Dispatchers.IO) {
+
+                        database = Room.databaseBuilder(
+                            application,
+                            appdatabase::class.java,
+                            appdatabase.DATABASE_NAME
+                        )
+                            .allowMainThreadQueries()
+                            .build()
+
+                        val notaExistente = database.dao.getNotaPorTitulo(titulostring)
+
+                        if (notaExistente == null) {
+                            // El título no existe, puedes insertar la nota
+                            val notanueva = entity(
+                                id = 0,
+                                titulo = titulostring,
+                                descripcion = descripcionstring,
+                                fecha = fechastring,
+                                hora = horastring,
+                                link = linkstring,
+                                email = emailstring,
+                                telefono = telefonostring,
+                                hecho = true
+                            )
+
+                            database.dao.insert(notanueva)
+
+                            titulo.text.clear()
+                            descripcion.text.clear()
+                            fecha.text.clear()
+                            hora.text.clear()
+                            link.text.clear()
+                            email.text.clear()
+                            telefono.text.clear()
+
+                            val intent = Intent(this@addnota, MainActivity::class.java)
+                            startActivity(intent)
+                        } else {
+                            // El título ya existe, mostrar diálogo de error
+                            runOnUiThread {
+                                dialog2()
+                            }
                         }
                     }
                 }
-            }
             } else {
                 dialog()
             }
