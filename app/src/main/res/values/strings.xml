@@ -7,4 +7,12 @@
     <string name="ajustes">Ajustes</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="titulo">Titulo</string>
+    <string name="fechaop">Fecha (opcional)</string>
+    <string name="horaop">Hora (opcional)</string>
+    <string name="linkop">Link (opcional)</string>
+    <string name="emailop">E-mail (opcional)</string>
+    <string name="telefonoop">Telefono (opcional)</string>
+    <string name="descop">Descripcion (opcional)</string>
+    <string name="hecho">Hecho?</string>
 </resources>
