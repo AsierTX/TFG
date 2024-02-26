@@ -126,46 +126,52 @@ class editarnota : AppCompatActivity() {
             }
 
             editar.setOnClickListener {
-                GlobalScope.launch(Dispatchers.IO) {
 
-                    val nuevoTitulo = titulo.text.toString()
-                    val nuevaDescripcion = descripcion.text.toString()
-                    val nuevaHora = hora.text.toString()
-                    val nuevaFecha = fecha.text.toString()
-                    val nuevoLink = link.text.toString()
-                    val nuevoEmail = email.text.toString()
-                    val nuevoTelefono = telefono.text.toString()
-                    val switchValue = switch.isChecked
-                    val hechoActualizado: Boolean = if (switchValue) true else false
+                val nuevoTitulo = titulo.text.toString()
+                val nuevaDescripcion = descripcion.text.toString()
+                val nuevaHora = hora.text.toString()
+                val nuevaFecha = fecha.text.toString()
+                val nuevoLink = link.text.toString()
+                val nuevoEmail = email.text.toString()
+                val nuevoTelefono = telefono.text.toString()
+                val switchValue = switch.isChecked
+                val hechoActualizado: Boolean = if (switchValue) true else false
 
-                    val notaActualizada = entity(
-                        titulo = nuevoTitulo,
-                        descripcion = nuevaDescripcion,
-                        hora = nuevaHora,
-                        fecha = nuevaFecha,
-                        link = nuevoLink,
-                        email = nuevoEmail,
-                        telefono = nuevoTelefono,
-                        hecho = hechoActualizado
-                    )
+                if (!isValidDateFormat(nuevaFecha)) {
+                    // Mostrar un mensaje de error y salir del método
+                    Toast.makeText(this, "Formato de fecha no válido. Utiliza xx/xx/xxxx", Toast.LENGTH_SHORT).show()
+                } else {
+                    GlobalScope.launch(Dispatchers.IO) {
 
-                    // Llama al método de actualización en tu DAO
 
-                    database.dao.updateNotaDetallada(
-                        nuevoTitulo,
-                        nuevaDescripcion,
-                        nuevaHora,
-                        nuevaFecha,
-                        nuevoLink,
-                        nuevoEmail,
-                        nuevoTelefono,
-                        hechoActualizado
-                    )
+                        val notaActualizada = entity(
+                            titulo = nuevoTitulo,
+                            descripcion = nuevaDescripcion,
+                            hora = nuevaHora,
+                            fecha = nuevaFecha,
+                            link = nuevoLink,
+                            email = nuevoEmail,
+                            telefono = nuevoTelefono,
+                            hecho = hechoActualizado
+                        )
 
-                }
+                        // Llama al método de actualización en tu DAO
+
+                        database.dao.updateNotaDetallada(
+                            nuevoTitulo,
+                            nuevaDescripcion,
+                            nuevaHora,
+                            nuevaFecha,
+                            nuevoLink,
+                            nuevoEmail,
+                            nuevoTelefono,
+                            hechoActualizado
+                        )
+                    }
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
                 }
+        }
 
         eliminar.setOnClickListener {
             mostrarDialogOpciones()
@@ -266,6 +272,10 @@ class editarnota : AppCompatActivity() {
         )
 
         datePickerDialog.show()
+    }
+    private fun isValidDateFormat(date: String): Boolean {
+        val regex = Regex("""^\d{2}/\d{2}/\d{4}$""")
+        return date.matches(regex)
     }
     private fun mostrarTimePickerDialog() {
         val calendario = Calendar.getInstance()
