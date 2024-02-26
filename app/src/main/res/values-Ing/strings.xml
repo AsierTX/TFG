@@ -11,4 +11,8 @@
     <string name="telefonoop">Phone (optional)</string>
     <string name="descop">Description (optional)</string>
     <string name="hecho">Completed?</string>
+    <string name="idioma">LENGUAGE</string>
+    <string name="tema">THEME</string>
+    <string name="colorpri">Main Color</string>
+    <string name="colorsec">Secondary Color</string>
 </resources>

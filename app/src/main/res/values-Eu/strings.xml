@@ -11,4 +11,8 @@
     <string name="telefonoop">Telefono zenbakia (hautazko)</string>
     <string name="descop">Deskribapena (hautazko)</string>
     <string name="hecho">Beteta?</string>
+    <string name="idioma">HIZKUNTZA</string>
+    <string name="tema">TEMA</string>
+    <string name="colorpri">Kolore Nagusia</string>
+    <string name="colorsec">Kolore Sekundarioa</string>
 </resources>

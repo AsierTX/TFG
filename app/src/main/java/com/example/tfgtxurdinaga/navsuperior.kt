@@ -1,10 +1,12 @@
 package com.example.tfgtxurdinaga
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -34,7 +36,16 @@ class navsuperior : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_navsuperior, container, false)
+        val view = inflater.inflate(R.layout.fragment_navsuperior, container, false)
+
+        val btnajustes = view.findViewById<ImageButton>(R.id.ajustes)
+
+        btnajustes.setOnClickListener {
+            val intent = Intent(requireContext(), ajustes::class.java)
+            startActivity(intent)
+        }
+
+        return view
     }
 
     companion object {
