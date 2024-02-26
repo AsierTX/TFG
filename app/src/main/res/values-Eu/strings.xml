@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="notas">Oharrak</string>
+    <string name="calendario">Egutegia</string>
+    <string name="ajustes">Ezarpenak</string>
+    <string name="titulo">Izenburua</string>
+    <string name="fechaop">Data (hautazko)</string>
+    <string name="horaop">Ordua (hautazko)</string>
+    <string name="linkop">Esteka (hautazko)</string>
+    <string name="emailop">Posta elektroniko (hautazko)</string>
+    <string name="telefonoop">Telefono zenbakia (hautazko)</string>
+    <string name="descop">Deskribapena (hautazko)</string>
+    <string name="hecho">Beteta?</string>
+</resources>
