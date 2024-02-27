@@ -224,6 +224,10 @@ class addnota : AppCompatActivity() {
             mes,
             día
         )
+        datePickerDialog.setOnCancelListener {
+            // Si se cancela, pasar al siguiente campo
+            link.requestFocus()
+        }
 
         datePickerDialog.show()
     }
@@ -246,6 +250,11 @@ class addnota : AppCompatActivity() {
             minutoActual,
             true
         )
+
+        timePickerDialog.setOnCancelListener {
+            // Si se cancela, pasar al siguiente campo
+            link.requestFocus()
+        }
 
         timePickerDialog.show()
     }

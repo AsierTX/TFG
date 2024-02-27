@@ -137,7 +137,7 @@
         app:layout_constraintVertical_bias="0.967">
 
         <Button
-            android:id="@+id/button8"
+            android:id="@+id/btnblanco2"
             android:layout_width="72dp"
             android:layout_height="56dp"
             android:backgroundTint="@color/blanco_secundario"
@@ -150,7 +150,7 @@
             tools:ignore="SpeakableTextPresentCheck" />
 
         <Button
-            android:id="@+id/button9"
+            android:id="@+id/btnblanco"
             android:layout_width="72dp"
             android:layout_height="56dp"
             android:backgroundTint="@color/white"
@@ -163,7 +163,7 @@
             tools:ignore="DuplicateIds,SpeakableTextPresentCheck" />
 
         <Button
-            android:id="@+id/button10"
+            android:id="@+id/btnazul"
             android:layout_width="72dp"
             android:layout_height="56dp"
             android:backgroundTint="@color/claro"
@@ -187,7 +187,7 @@
         app:layout_constraintVertical_bias="0.697">
 
         <Button
-            android:id="@+id/button8"
+            android:id="@+id/btnmarron"
             android:layout_width="72dp"
             android:layout_height="56dp"
             android:backgroundTint="@color/check"
@@ -200,7 +200,7 @@
             tools:ignore="DuplicateIds,SpeakableTextPresentCheck" />
 
         <Button
-            android:id="@+id/button9"
+            android:id="@+id/btnamarillo"
             android:layout_width="72dp"
             android:layout_height="56dp"
             android:backgroundTint="@color/amarillo"
@@ -213,7 +213,7 @@
             tools:ignore="DuplicateIds,SpeakableTextPresentCheck" />
 
         <Button
-            android:id="@+id/button11"
+            android:id="@+id/btnnaranja"
             android:layout_width="72dp"
             android:layout_height="56dp"
             android:backgroundTint="@color/naranja"
@@ -226,7 +226,7 @@
             tools:ignore="SpeakableTextPresentCheck" />
 
         <Button
-            android:id="@+id/button10"
+            android:id="@+id/btnrojo"
             android:layout_width="72dp"
             android:layout_height="56dp"
             android:backgroundTint="@color/rojo"
