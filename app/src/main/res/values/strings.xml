@@ -18,6 +18,10 @@
     <string name="tema">TEMA</string>
     <string name="colorpri">Color Principal</string>
     <string name="colorsec">Color Secundario</string>
+    <string name="alarma">Crea una nueva alarma!</string>
+    <string name="fechaa">Dias</string>
+    <string name="horaa">Hora</string>
+    <string name="alarma2">Lista de alarmas</string>
 
 
 </resources>

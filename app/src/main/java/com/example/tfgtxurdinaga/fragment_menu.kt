@@ -40,6 +40,7 @@ class fragment_menu : Fragment() {
 
         val btncalendario = view.findViewById<ImageButton>(R.id.btnOption1)
         val btnnotas = view.findViewById<ImageButton>(R.id.btnOption2)
+        val btnalarmas = view.findViewById<ImageButton>(R.id.btnOption3)
 
         btnnotas.setOnClickListener {
             val intent = Intent(requireContext(), MainActivity::class.java)
@@ -47,6 +48,10 @@ class fragment_menu : Fragment() {
         }
         btncalendario.setOnClickListener {
             val intent = Intent(requireContext(), calendario2::class.java)
+            startActivity(intent)
+        }
+        btnalarmas.setOnClickListener {
+            val intent = Intent(requireContext(), alarmas::class.java)
             startActivity(intent)
         }
         return view

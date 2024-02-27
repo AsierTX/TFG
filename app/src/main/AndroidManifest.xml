@@ -13,6 +13,9 @@
         android:theme="@style/Theme.TFGTxurdinaga"
         tools:targetApi="31">
         <activity
+            android:name=".alarmas"
+            android:exported="false" />
+        <activity
             android:name=".ajustes"
             android:exported="false" />
         <activity
@@ -32,8 +35,8 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:windowSoftInputMode="adjustPan"
-            android:exported="true">
+            android:exported="true"
+            android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -41,5 +44,9 @@
             </intent-filter>
         </activity>
     </application>
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+    <uses-permission android:name="android.permission.USE_EXACT_ALARM" />
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
 
 </manifest>

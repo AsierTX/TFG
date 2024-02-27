@@ -9,4 +9,6 @@
     <color name="rojo">#FF0000</color>
     <color name="amarillo">#FFFF00</color>
     <color name="naranja">#FFA500</color>
+    <color name="azul">#030060</color>
+    <color name="morado">#4D0070</color>
 </resources>

@@ -15,4 +15,9 @@
     <string name="tema">TEMA</string>
     <string name="colorpri">Kolore Nagusia</string>
     <string name="colorsec">Kolore Sekundarioa</string>
+    <string name="alarma">Sortu alarma berri bat!</string>
+    <string name="fechaa">Egunak</string>
+    <string name="horaa">Ordua</string>
+    <string name="alarma2">Alarma lista</string>
+
 </resources>
