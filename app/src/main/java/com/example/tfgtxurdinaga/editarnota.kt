@@ -261,11 +261,11 @@ class editarnota : AppCompatActivity() {
                 startActivity(intent)
             } else {
                 // Manejar el caso en el que no hay aplicación para abrir la URL
-                Toast.makeText(this, "No hay aplicación para abrir la URL", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.applink), Toast.LENGTH_SHORT).show()
             }
         } else {
             // Manejar el caso en el que la URL no sea válida
-            Toast.makeText(this, "URL no válida", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.urlno), Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -330,9 +330,9 @@ class editarnota : AppCompatActivity() {
     private fun dialog() {
         val builder = AlertDialog.Builder(this)
 
-        builder.setTitle("ERROR")
-            .setMessage("Campo vacio, escribe algo.")
-            .setPositiveButton("Vale") { dialog, which ->
+        builder.setTitle(getString(R.string.error))
+            .setMessage(getString(R.string.campovacio))
+            .setPositiveButton(getString(R.string.vale)) { dialog, which ->
             }
         val dialog: AlertDialog = builder.create()
         dialog.show()
@@ -340,9 +340,9 @@ class editarnota : AppCompatActivity() {
     private fun dialogerror() {
         val builder = AlertDialog.Builder(this)
 
-        builder.setTitle("ERROR")
-            .setMessage("Formato de fecha no válido. Utiliza xx/xx/xxxx")
-            .setPositiveButton("Vale") { dialog, which ->
+        builder.setTitle(getString(R.string.error))
+            .setMessage(getString(R.string.fechaformat))
+            .setPositiveButton(getString(R.string.vale)) { dialog, which ->
             }
         val dialog: AlertDialog = builder.create()
         dialog.show()
@@ -351,7 +351,7 @@ class editarnota : AppCompatActivity() {
         val opciones = arrayOf("Sí", "No", "Cancelar")
 
         val builder = AlertDialog.Builder(this)
-        builder.setTitle("Seguro que lo quieres borrar?")
+        builder.setTitle(getString(R.string.borrar))
             .setItems(opciones) { dialog, which ->
                 when (which) {
                     0 -> {

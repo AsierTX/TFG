@@ -23,6 +23,21 @@
     <string name="horaa">Hora</string>
     <string name="alarma2">Lista de alarmas</string>
     <string name="alarmas">Alarmas</string>
+    <string name="fechaformat">Formato de fecha no válido. Utiliza xx/xx/xxxx</string>
+    <string name="error">ERROR</string>
+    <string name="vale">Vale</string>
+    <string name="otrotitulo">¡Ese titulo ya existe! Prueba con otro.</string>
+    <string name="tituloobligatorio">Es imprescindible escribir el titulo!</string>
+    <string name="selectdia">Selecciona los días de la semana</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="campovacio">Campo vacio, escribe algo.</string>
+    <string name="fechaformat1">Formato incorrecto. Formato requerido: dd/mm/aaaa y 00:00</string>
+    <string name="aplicaciondodisp">Aplicacion de alarmas no disponible.</string>
+    <string name="appnoinsta">La aplicación de reloj no está instalada en tu dispositivo.</string>
+    <string name="aceptar">Aceptar</string>
+    <string name="applink">No hay aplicación para abrir la URL</string>
+    <string name="urlno">URL no válida</string>
+    <string name="borrar">¿Seguro que lo quieres borrar?</string>
     <!-- TODO: Remove or change this placeholder text -->
 
 

@@ -21,4 +21,21 @@
     <string name="alarma2">Alarm list</string>
     <string name="alarmas">Alarms</string>
 
+    <string name="fechaformat">Invalid date format. Use xx/xx/xxxx</string>
+    <string name="error">ERROR</string>
+    <string name="vale">Okay</string>
+    <string name="otrotitulo">That title already exists! Try another one.</string>
+    <string name="tituloobligatorio">Title is mandatory!</string>
+    <string name="selectdia">Select days of the week</string>
+    <string name="cancelar">Cancel</string>
+    <string name="campovacio">Empty field, write something.</string>
+    <string name="fechaformat1">Incorrect format. Required format: dd/mm/yyyy and 00:00</string>
+    <string name="aplicaciondodisp">Alarm application not available.</string>
+    <string name="appnoinsta">The clock application is not installed on your device.</string>
+    <string name="aceptar">Accept</string>
+    <string name="applink">No app to open the URL</string>
+    <string name="urlno">Invalid URL</string>
+    <string name="borrar">Are you sure you want to delete it?</string>
+
+
 </resources>

@@ -21,4 +21,21 @@
     <string name="alarma2">Alarma lista</string>
     <string name="alarmas">Alarmak</string>
 
+    <string name="fechaformat">Data formatu baliogabea. Erabili xx/xx/xxxx</string>
+    <string name="error">ERROREA</string>
+    <string name="vale">Ados</string>
+    <string name="otrotitulo">Izenburu hori jadanik existitzen da! Saiatu beste batekin.</string>
+    <string name="tituloobligatorio">Izenburua derrigorrezkoa da!</string>
+    <string name="selectdia">Astearen egunak hautatu</string>
+    <string name="cancelar">Utzi</string>
+    <string name="campovacio">Hutsik dago eremua, idatzi zerbait.</string>
+    <string name="fechaformat1">Formatu okerra. Hurrengo formatua behar da: dd/mm/aaaa eta 00:00</string>
+    <string name="aplicaciondodisp">Alarmen aplikazioa ez dago eskuragarri.</string>
+    <string name="appnoinsta">Erlojuaren aplikazioa ez dago zure gailuan instalatuta.</string>
+    <string name="aceptar">Onartu</string>
+    <string name="applink">URLa irekitzeko aplikaziorik ez</string>
+    <string name="urlno">URL baliogabea</string>
+    <string name="borrar">Ziur zaude ezabatu nahi duzula?</string>
+
+
 </resources>

@@ -180,9 +180,9 @@ class addnota : AppCompatActivity() {
     private fun dialog() {
         val builder = AlertDialog.Builder(this)
 
-        builder.setTitle("ERROR")
-            .setMessage("Es imprescindible escribir el titulo!")
-            .setPositiveButton("Vale") { dialog, which ->
+        builder.setTitle(getString(R.string.error))
+            .setMessage(getString(R.string.tituloobligatorio))
+            .setPositiveButton(getString(R.string.vale)) { dialog, which ->
             }
         val dialog: AlertDialog = builder.create()
         dialog.show()
@@ -195,9 +195,9 @@ class addnota : AppCompatActivity() {
     private fun dialog2() {
         val builder = AlertDialog.Builder(this)
 
-        builder.setTitle("ERROR")
-            .setMessage("Ese titulo ya existe! Prueba con otro.")
-            .setPositiveButton("Vale") { dialog, which ->
+        builder.setTitle(getString(R.string.error))
+            .setMessage(getString(R.string.otrotitulo))
+            .setPositiveButton(getString(R.string.vale)) { dialog, which ->
             }
         val dialog: AlertDialog = builder.create()
         dialog.show()
@@ -261,9 +261,9 @@ class addnota : AppCompatActivity() {
     private fun dialogerror() {
         val builder = AlertDialog.Builder(this)
 
-        builder.setTitle("ERROR")
-            .setMessage("Formato de fecha no válido. Utiliza xx/xx/xxxx")
-            .setPositiveButton("Vale") { dialog, which ->
+        builder.setTitle(getString(R.string.error))
+            .setMessage(getString(R.string.fechaformat))
+            .setPositiveButton(getString(R.string.vale)) { dialog, which ->
             }
         val dialog: AlertDialog = builder.create()
         dialog.show()
