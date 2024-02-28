@@ -8,6 +8,7 @@ import android.app.PendingIntent
 import android.app.TimePickerDialog
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.AlarmClock
@@ -30,6 +31,7 @@ class alarmas : AppCompatActivity() {
     private lateinit var crear: ImageButton
     private val diasSeleccionados: MutableSet<Int> = mutableSetOf()
     private lateinit var listview: ListView
+    private lateinit var reloj: ImageButton
 
 
 
@@ -43,6 +45,7 @@ class alarmas : AppCompatActivity() {
         fecha = findViewById(R.id.fecha3)
         hora = findViewById(R.id.fecha4)
         crear = findViewById(R.id.crearbtn)
+        reloj = findViewById(R.id.imageButton11)
 
 
         crear.setOnClickListener {
@@ -84,7 +87,10 @@ class alarmas : AppCompatActivity() {
             } else {
                 dialog()
             }
+        }
 
+        reloj.setOnClickListener{
+            abrirReloj()
         }
 
         fecha.setOnFocusChangeListener { _, hasFocus ->
@@ -231,5 +237,40 @@ class alarmas : AppCompatActivity() {
         }
 
         return null
+    }
+    private fun abrirReloj() {
+        val packageName = "com.android.deskclock" // Ajusta el paquete según tu dispositivo
+        val isAppInstalled = isPackageInstalled(packageName)
+
+        if (isAppInstalled) {
+            val intent = Intent(AlarmClock.ACTION_SHOW_ALARMS)
+            startActivity(intent)
+            hora.text.clear()
+            fecha.text.clear()
+        } else {
+            // Si la aplicación del reloj no está instalada, muestra un mensaje de error
+            mostrarMensajeError("La aplicación de reloj no está instalada en tu dispositivo.")
+        }
+    }
+    private fun isPackageInstalled(packageName: String): Boolean {
+        val packageManager = packageManager
+        return try {
+            packageManager.getPackageInfo(packageName, 0)
+            true
+        } catch (e: Exception) {
+            false
+        }
+    }
+    private fun mostrarMensajeError(mensaje: String) {
+        val builder = AlertDialog.Builder(this)
+
+        builder.setTitle("Error")
+            .setMessage(mensaje)
+            .setPositiveButton("Aceptar") { dialog, _ ->
+                dialog.dismiss()
+            }
+
+        val dialog: AlertDialog = builder.create()
+        dialog.show()
     }
 }
