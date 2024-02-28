@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="opciones_spinner">
+        <item>Todo</item>
+        <item>Con fecha</item>
+        <item>Sin fecha</item>
+        <item>Hecho</item>
+        <item>No hecho</item>
+    </array>
+</resources>

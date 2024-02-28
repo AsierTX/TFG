@@ -102,7 +102,7 @@ class addnota : AppCompatActivity() {
                                 link = linkstring,
                                 email = emailstring,
                                 telefono = telefonostring,
-                                hecho = true
+                                hecho = false
                             )
 
                             database.dao.insert(notanueva)

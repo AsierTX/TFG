@@ -19,6 +19,19 @@ interface dao {
 
     @Query("SELECT * FROM entity WHERE titulo LIKE '%' || :titulo || '%'")
     fun buscarPorTitulo(titulo: String): List<entity>
+
+    @Query("SELECT * FROM entity WHERE fecha IS NOT NULL AND fecha != ''")
+    fun entidadesconfecha(): List<entity>
+
+    @Query("SELECT * FROM entity WHERE fecha = ''")
+    fun entidadessinfecha(): List<entity>
+
+    @Query("SELECT * FROM entity WHERE hecho = '1'")
+    fun entidadeshechas(): List<entity>
+
+    @Query("SELECT * FROM entity WHERE hecho = '0'")
+    fun entidadesnohechas(): List<entity>
+
     @Query("SELECT hecho FROM entity WHERE titulo = :titulo")
     fun gethecho(titulo: String): Boolean?
 
