@@ -19,5 +19,6 @@
     <string name="fechaa">Egunak</string>
     <string name="horaa">Ordua</string>
     <string name="alarma2">Alarma lista</string>
+    <string name="alarmas">Alarmak</string>
 
 </resources>

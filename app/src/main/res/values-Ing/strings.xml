@@ -19,5 +19,6 @@
     <string name="fechaa">Days</string>
     <string name="horaa">Time</string>
     <string name="alarma2">Alarm list</string>
+    <string name="alarmas">Alarms</string>
 
 </resources>

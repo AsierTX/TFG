@@ -22,6 +22,9 @@
     <string name="fechaa">Dias</string>
     <string name="horaa">Hora</string>
     <string name="alarma2">Lista de alarmas</string>
+    <string name="alarmas">Alarmas</string>
+    <!-- TODO: Remove or change this placeholder text -->
+
 
 
 </resources>
