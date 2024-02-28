@@ -36,6 +36,8 @@
     <string name="applink">URLa irekitzeko aplikaziorik ez</string>
     <string name="urlno">URL baliogabea</string>
     <string name="borrar">Ziur zaude ezabatu nahi duzula?</string>
+    <string name="info">INFORMAZIOA</string>
+    <string name="info2">Aplikazio hau Josu Martin, Asier Iturriaga eta Oier Molina egin dute, CIFP Txurdinagako hiru programatzaile. Espero dugu zur gustukoa izatea.</string>
 
 
 </resources>

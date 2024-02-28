@@ -36,6 +36,9 @@
     <string name="applink">No app to open the URL</string>
     <string name="urlno">Invalid URL</string>
     <string name="borrar">Are you sure you want to delete it?</string>
+    <string name="info">INFORMATION</string>
+    <string name="info2">This app has been done by Josu Martin, Asier Iturriaga and Oier Molina, three developers from Txurdinaga CIFP. We hope you enjoy it.</string>
+
 
 
 </resources>

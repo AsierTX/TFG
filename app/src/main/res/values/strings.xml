@@ -38,6 +38,9 @@
     <string name="applink">No hay aplicación para abrir la URL</string>
     <string name="urlno">URL no válida</string>
     <string name="borrar">¿Seguro que lo quieres borrar?</string>
+    <string name="info">INFORMACION</string>
+    <string name="info2">Esta aplicacion ha sido desarrollada por Josu Martin, Asier Iturriaga y Oier Molina, tres desarroladores de Txurdinaga CIFP. Esperamos que la disfrutes.</string>
+
     <!-- TODO: Remove or change this placeholder text -->
 
 
