@@ -138,7 +138,7 @@ class alarmas : AppCompatActivity() {
         val dias = arrayOf("Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado")
 
         val builder = AlertDialog.Builder(this)
-        builder.setTitle("Selecciona los días de la semana")
+        builder.setTitle(getString(R.string.selectdia))
 
         val isCheckedArray = BooleanArray(dias.size) { diasSeleccionados.contains(it + 1) }
 
@@ -163,7 +163,7 @@ class alarmas : AppCompatActivity() {
             dialog.dismiss()
         }
 
-        builder.setNegativeButton("Cancelar") { dialog, _ ->
+        builder.setNegativeButton(getString(R.string.cancelar)) { dialog, _ ->
             dialog.dismiss()
         }
 
@@ -192,9 +192,9 @@ class alarmas : AppCompatActivity() {
     private fun dialog() {
         val builder = AlertDialog.Builder(this)
 
-        builder.setTitle("ERROR")
-            .setMessage("Campo vacio, escribe algo.")
-            .setPositiveButton("Vale") { dialog, which ->
+        builder.setTitle(getString(R.string.error))
+            .setMessage(getString(R.string.campovacio))
+            .setPositiveButton(getString(R.string.vale)) { dialog, which ->
             }
         val dialog: AlertDialog = builder.create()
         dialog.show()
@@ -202,9 +202,9 @@ class alarmas : AppCompatActivity() {
     private fun dialogformato() {
         val builder = AlertDialog.Builder(this)
 
-        builder.setTitle("ERROR")
-            .setMessage("Formato incorrecto. Formato requerido: dd/mm/aaaa y 00:00")
-            .setPositiveButton("Vale") { dialog, which ->
+        builder.setTitle(getString(R.string.error))
+            .setMessage(getString(R.string.fechaformat1))
+            .setPositiveButton(getString(R.string.vale)) { dialog, which ->
             }
         val dialog: AlertDialog = builder.create()
         dialog.show()
@@ -212,9 +212,9 @@ class alarmas : AppCompatActivity() {
     private fun dialogalarmas() {
         val builder = AlertDialog.Builder(this)
 
-        builder.setTitle("ERROR")
-            .setMessage("Aplicacion de alarmas no disponible.")
-            .setPositiveButton("Vale") { dialog, which ->
+        builder.setTitle(getString(R.string.error))
+            .setMessage(getString(R.string.aplicaciondodisp))
+            .setPositiveButton(getString(R.string.vale)) { dialog, which ->
             }
         val dialog: AlertDialog = builder.create()
         dialog.show()
@@ -249,7 +249,7 @@ class alarmas : AppCompatActivity() {
             fecha.text.clear()
         } else {
             // Si la aplicación del reloj no está instalada, muestra un mensaje de error
-            mostrarMensajeError("La aplicación de reloj no está instalada en tu dispositivo.")
+            mostrarMensajeError(getString(R.string.appnoinsta))
         }
     }
     private fun isPackageInstalled(packageName: String): Boolean {
@@ -264,9 +264,9 @@ class alarmas : AppCompatActivity() {
     private fun mostrarMensajeError(mensaje: String) {
         val builder = AlertDialog.Builder(this)
 
-        builder.setTitle("Error")
+        builder.setTitle(getString(R.string.error))
             .setMessage(mensaje)
-            .setPositiveButton("Aceptar") { dialog, _ ->
+            .setPositiveButton(getString(R.string.aceptar)) { dialog, _ ->
                 dialog.dismiss()
             }
 
