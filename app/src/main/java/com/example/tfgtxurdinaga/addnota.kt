@@ -226,7 +226,7 @@ class addnota : AppCompatActivity() {
         )
         datePickerDialog.setOnCancelListener {
             // Si se cancela, pasar al siguiente campo
-            link.requestFocus()
+            hora.requestFocus()
         }
 
         datePickerDialog.show()

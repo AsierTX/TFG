@@ -66,12 +66,7 @@ class calendario2 : AppCompatActivity() {
             updateNotesList()
         }
 
-        btncambiar = findViewById(R.id.btnCambiar)
 
-        btncambiar.setOnClickListener{
-            val intent = Intent(this, calendario::class.java)
-            startActivity(intent)
-        }
 
         // Lista de meses
         val listaDeMeses = arrayOf(
