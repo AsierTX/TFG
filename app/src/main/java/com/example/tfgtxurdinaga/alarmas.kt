@@ -186,6 +186,10 @@ class alarmas : AppCompatActivity() {
             minutoActual,
             true
         )
+        timePickerDialog.setOnCancelListener {
+            // Si se cancela, pasar al siguiente campo
+            fecha.requestFocus()
+        }
 
         timePickerDialog.show()
     }
